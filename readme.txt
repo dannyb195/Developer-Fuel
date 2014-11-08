@@ -17,8 +17,17 @@ Well I say NO MORE!  Developer Fuel provides the most important WordPress Admin 
 == Installation ==
 
 - Upload the developer-fuel dir to your /plugins directory or just install via the WordPress Admin
-- Get a Google Maps API key here: https://developers.google.com/maps/documentation/javascript/tutorial#api_key
-- Paste your Google Maps key in the dashboard widget field and set the times you would like to see coffee versus local bars
+- This plugin requires a Google Maps Embed API Key
+	- Go here, https://console.developers.google.com
+	- If you don't have any projects, create one. Or create one specifically for this, it's your choice
+	- Click on the name of your project
+	- Click 'Enable and API'
+	- Search for 'Google Maps Embed API' and activate it
+	- Click on 'Credentials' under APIs & auth in the left navigation
+	- Click on 'Create new Key' under 'Public API access'
+	- Click on 'Browser Key' when prompted and leave the next teext field empty, simply click 'Create'
+	- Copy the API Key that was just generated and paste it in the Developer Fuel Google Maps Key text field
+- Set the times you would like to see coffee versus local bars
 
 == Frequently Asked Questions ==
 
