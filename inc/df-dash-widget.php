@@ -159,10 +159,8 @@ class DF_Dash_Widget {
 			$end = $options['time_end'];
 
 			if ( $start < $current_time && $current_time < $end ) {
-				$test = "It's" . $current_time_string . " and coffee time </br>";
 				$drink = 'local+coffee+shop';
 			} else {
-				$test = "It's" . $current_time_string . " booze time </br>";
 				$drink = 'local+bars';
 			}
 			// From http://wptheming.com/2013/07/simple-ajax-example/
