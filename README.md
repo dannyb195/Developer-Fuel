@@ -5,7 +5,7 @@
 
 Let's be honest... being a location independent developer or designer is pretty awesome.  We work at home, at conferences, or simply traveling, but all too often we have a billion tabs open in our browser!
 
-Well I say NO MORE!  Developer Fuel provides the most import WordPress Admin UX update since MP6 by adding a widget right on your Dashboard to show either the closet Coffee Shops or Bars.  No longer will you have to get lost in a sea of Chrome tabs just to find a place to grab your drink of choice.
+Well I say NO MORE!  Developer Fuel provides the most important WordPress Admin UX update since MP6 by adding a widget right on your Dashboard to show either the closet Coffee Shops or Bars.  No longer will you have to get lost in a sea of Chrome tabs just to find a place to grab your drink of choice.
 
 ##Installation
 
