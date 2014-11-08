@@ -7,12 +7,16 @@
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(devFuelshowPosition);
 		} else {
-			$devFuel.innerHTML = "Geolocation is not supported by this browser.";
+			$( '#df-status' ).html( 'Geolocation is not supported by this browser.' );
 		}
 	} // end getLocation
 
 	function devFuelshowPosition( position ) {
-		if ( position ) {
+		if ( 'undefined' == typeof position ) {
+			console.log( position );
+			$( '#df-status' ).html( 'Geolocation is not supported by this browser OR you have blocked your browser for using this feature, please allow your browser to use your location.' );
+		}
+		if ( 'undefined' != typeof position ) {
 			var lat = position.coords.latitude,
 				lon = position.coords.longitude;
 			// This does the ajax request
