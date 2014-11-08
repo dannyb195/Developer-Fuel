@@ -1,11 +1,4 @@
 <?php
-
-/**
- * Developer Fuel
- *
- * @package Developer Fuel
- */
-
 /**
  * Plugin Name: Developer Fuel
  * Plugin URI:
@@ -13,6 +6,13 @@
  * Author: dan-gaia, danalleyinteractive
  * Author URI:
  * Version: 0.1
+ */
+ 
+ 
+/**
+ * Developer Fuel
+ *
+ * @package Developer Fuel
  */
 
 // Exit if accessed directly
