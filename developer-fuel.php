@@ -22,8 +22,8 @@ define( 'DF_PATH', plugin_dir_path( __FILE__ ) );
 
 // Scripts
 function developer_fuel_scripts() {
-	wp_enqueue_script( 'moment-script', plugins_url() . '/developer-fuel/scripts/moment.min.js', 'jquery', '0.1', true );
-	wp_enqueue_script( 'df-script', plugins_url() . '/developer-fuel/scripts/df-scripts.js', 'jquery', '0.1', true );
+	wp_enqueue_script( 'moment-script', plugins_url( 'scripts/moment.min.js', __FILE__ ), 'jquery', '0.1', true );
+	wp_enqueue_script( 'df-script', plugins_url( 'scripts/df-scripts.js', __FILE__ ), 'jquery', '0.1', true );
 }
 
 add_action( 'admin_enqueue_scripts', 'developer_fuel_scripts' );
