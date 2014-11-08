@@ -1,0 +1,55 @@
+<html>
+<head>
+	<title>Devekoper Fuel</title>
+
+<!-- AIzaSyCqJh1N8nSE05RUzpVYrr_1VoOeO2-yMDc -->
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+</head>
+<body>
+
+	<span id="demo"></span>
+	<iframe id="dev-fuel" width="600" height="400" frameborder="0" style="border:0;" src="#"></iframe>
+
+<script type="text/javascript">
+
+	var x = document.getElementById('dev-fuel');
+	function getLocation() {
+	    if (navigator.geolocation) {
+	        navigator.geolocation.getCurrentPosition(showPosition);
+	    } else {
+	        x.innerHTML = "Geolocation is not supported by this browser.";
+	    }
+	}
+	function showPosition(position) {
+
+		if ( position ) {
+
+			x.innerHTML = "Latitude: " + position.coords.latitude +
+		    "<br>Longitude: " + position.coords.longitude;
+
+		    var lat = position.coords.latitude,
+		    	lon = position.coords.longitude,
+		    	url = 'https://www.google.com/maps/embed/v1/search?key=AIzaSyCqJh1N8nSE05RUzpVYrr_1VoOeO2-yMDc&zoom=13&center=' + lat + ',' + lon + '&q=record+stores';
+
+		    	$( '#dev-fuel' ).attr( 'src', url );
+				$( '#dev-fuel' ).contentWindow.location.reload();
+				$( '#dev-fuel' ).css( 'opacity', '1' );
+
+		} else {
+
+			$( '#demo' ).innerHTML( 'dsfafdsfafsadfsafsafas' );
+
+		}
+
+	}
+
+	getLocation();
+	showPosition();
+
+</script>
+
+</body>
+</html>
