@@ -1,7 +1,7 @@
 <?php
 
 /**
-* Registering the dash widget
+* Super important class that shows us where to gget coffe or beer while traveling
 *
 * @package Developer Fuel
 * @author Dan Beil
@@ -11,84 +11,24 @@ class DF_Dash_Widget {
 
 	private $options;
 
-	// private $df_time;
-
-	public static $df_time_key = array(
-
-		'00:00',
-		'00:30',
-		'01:00',
-		'01:30',
-		'02:00',
-		'02:30',
-		'03:00',
-		'03:30',
-		'04:00',
-		'04:30',
-		'05:00',
-		'05:30',
-		'06:00',
-		'06:30',
-		'07:00',
-		'07:30',
-		'08:00',
-		'08:30',
-		'09:00',
-		'09:30',
-		'10:00',
-		'10:30',
-		'11:00',
-		'11:30',
-		'12:00',
-		'13:00',
-		'13:30',
-		'14:00',
-		'14:30',
-		'15:00',
-		'15:30',
-		'16:00',
-		'16:30',
-		'17:00',
-		'17:30',
-		'18:00',
-		'18:30',
-		'19:00',
-		'19:30',
-		'20:00',
-		'20:30',
-		'21:00',
-		'21:30',
-		'22:00',
-		'22:30',
-		'23:00',
-		'23:30',
-		'24:00',
-		'24:30',
-
-	);
+	public static $df_time_key = array( '00:00', '00:30', '01:00', '01:30', '02:00', '02:30', '03:00', '03:30', '04:00', '04:30', '05:00', '05:30', '06:00', '06:30', '07:00', '07:30', '08:00', '08:30', '09:00', '09:30', '10:00', '10:30', '11:00', '11:30', '12:00', '13:00', '13:30', '14:00', '14:30', '15:00', '15:30', '16:00', '16:30', '17:00', '17:30', '18:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00', '22:30', '23:00', '23:30', '24:00', '24:30', );
 
 	public function df_time() {
-
 		foreach ( self::$df_time_key as $time ) {
 			$key = str_replace( ':', '', $time );
 			$df_time_key[ $key ] = $time;
 		}
-
 		return $df_time_key;
-
 	}
 
 	public function __construct() {
-
 		add_action( 'admin_init', array( $this, 'df_register_settings' ) );
 		add_action( 'wp_dashboard_setup', array( $this, 'df_dash_widget' ) );
 		add_action( 'admin_menu', array( $this, 'df_menu' ) );
 		add_action( 'wp_ajax_dev_fuel_ajax_request', array( $this, 'dev_fuel_ajax_request' ) );
-
 	}
 
 	public function df_register_settings() {
-
 		register_setting(
 			'dev_fuel_option_group', // Option group
 			'dev_fuel_option_name', // Option name
@@ -126,34 +66,28 @@ class DF_Dash_Widget {
 			'dev-fuel-setting-admin',
 			'dev_fuel_setting_section_id'
 		);
-
 	}
 
 	public function df_menu() {
-
 		// using options.php here make a hidden options page
 		add_submenu_page( 'options.php', 'Developer Fuel', 'Developer Fuel', 'delete_plugins', 'df-settings', array( $this, 'df_settings' ) );
-
 	}
 
 	public function df_settings() { ?>
-
-	<div class="wrap">
-		<form method="post" action="options.php">
-			<?php
-			$this->options = get_option( 'dev_fuel_option_name' );
-			// This prints out all hidden setting fields
-			settings_fields( 'dev_fuel_option_group' );
-			do_settings_sections( 'dev-fuel-setting-admin' );
-			submit_button();
-			?>
-		</form>
-	</div>
-
+		<div class="wrap">
+			<form method="post" action="options.php">
+				<?php
+				$this->options = get_option( 'dev_fuel_option_name' );
+				// This prints out all hidden setting fields
+				settings_fields( 'dev_fuel_option_group' );
+				do_settings_sections( 'dev-fuel-setting-admin' );
+				submit_button();
+				?>
+			</form>
+		</div>
 	<?php }
 
 	public function sanitize( $input ) {
-
 		$new_input = array();
 		if( isset( $input['key_number'] ) ) {
 			$new_input['key_number'] = urlencode( $input['key_number'] );
@@ -165,98 +99,55 @@ class DF_Dash_Widget {
 			$new_input['time_end'] = intval( $input['time_end'] );
 		}
 		return $new_input;
-
 	}
 
-	/**
-	* Print the Section text
-	*/
 	public function print_section_info() {
-
-		echo 'Enter your settings below:';
-
+		echo 'Enter your settings below:</br><small>Google Maps Key must be entered to find coffee and or beer</small>';
 	}
 
-	/**
-	* Get the settings option array and print one of its values
-	*/
 	public function key_number_callback() {
-
 		echo sprintf(
 			'<input type="text" id="key_number" name="dev_fuel_option_name[key_number]" value="%s" />',
 			isset( $this->options['key_number'] ) ? esc_attr( $this->options['key_number']) : ''
 		);
-
 	}
 
-	/**
-	* Get the settings option array and print one of its values
-	*/
 	public function time_start_callback() {
-
-		// echo self::time_check();
-
 		echo '<select name="dev_fuel_option_name[time_start]">';
-
 			foreach ( self::df_time() as $key => $time ) {
-
 				$selected = isset( $this->options['time_start'] ) ? $this->options['time_start'] : '';
-
-				// $key = str_replace( ':', '', $selected );
-
 				$selected = $key == $selected ? 'selected' : '';
-
 				echo '<option value="' . $key . '"' . $selected . '>' . $time . '</option>';
-
 			}
-
 		echo '</select>';
-
 	}
 
-	/**
-	* Get the settings option array and print one of its values
-	*/
 	public function time_end_callback() {
-
 		echo '<select name="dev_fuel_option_name[time_end]">';
-
 			foreach ( self::df_time() as $key => $time ) {
-
 				$selected = isset( $this->options['time_end'] ) ? $this->options['time_end'] : '';
-
 				$selected = $key == $selected ? 'selected' : '';
-
 				echo '<option value="' . $key . '"' . $selected . '>' . $time . '</option>';
-
 			}
-
 		echo '</select>';
-
 	}
 
 	public function df_dash_widget() {
-
-		wp_add_dashboard_widget(
-			'dev_fuel_dashboard_widget', // Widget slug.
-			'Developer Fuel Dashboard Widget', // Title.
-			array( $this, 'df_dash_output' ) // Display function.
-		);
-
+		wp_add_dashboard_widget( 'dev_fuel_dashboard_widget', 'Developer Fuel Dashboard Widget', array( $this, 'df_dash_output' ) );
 	}
 
-	public function df_dash_output() { ?>
-
-		<?php self::df_settings(); ?>
-		<span id="df-status"></span>
-		<iframe id="dev-fuel" width="500" height="400" frameborder="0" style="border:0; opacity: 0;" src="https://www.google.com/maps/embed/v1/search?key=AIzaSyCqJh1N8nSE05RUzpVYrr_1VoOeO2-yMDc&zoom=1&q=coffee"></iframe>
-
-	<?php }
+	public function df_dash_output() {
+		// Uer entered data is escaped / sanatize on save
+		self::df_settings();
+		$options = get_option( 'dev_fuel_option_name' );
+		$key = $options['key_number'];
+		echo '<span id="df-status"></span>';
+		echo '<iframe id="dev-fuel" width="500" height="400" frameborder="0" style="border:0; opacity: 0;" src="https://www.google.com/maps/embed/v1/search?key=' . $key . '&zoom=1&q=coffee"></iframe>';
+	}
 
 	public function dev_fuel_ajax_request() {
-
+		// Uer entered data is escaped / sanatize on save
 		$options = get_option( 'dev_fuel_option_name' );
-
 		// The $_REQUEST contains all the data sent via ajax
 		if ( ! empty( $options['key_number'] ) && isset( $_GET ) ) {
 
@@ -278,9 +169,7 @@ class DF_Dash_Widget {
 			// Now we'll return it to the javascript function
 			// Anything outputted will be returned in the response
 			echo 'https://www.google.com/maps/embed/v1/search?key=' . $key . '&zoom=13&center=' . $lat . ',' . $long . '&q=' . $drink . '';
-
 		}
-
 		// Always die in functions echoing ajax content
 		die();
 	} // end example_ajax_request
