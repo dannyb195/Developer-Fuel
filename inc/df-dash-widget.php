@@ -44,7 +44,7 @@ class DF_Dash_Widget {
 
 		add_settings_field(
 			'key_number',
-			'Google Maps Key <small>(link to google for key -> http://bit.ly/1tpOA3x)</small>',
+			'Google Maps Key <small>(link to google for key -> https://console.developers.google.com)</small>',
 			array( $this, 'key_number_callback' ),
 			'dev-fuel-setting-admin',
 			'dev_fuel_setting_section_id'
