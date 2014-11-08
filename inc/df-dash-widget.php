@@ -142,7 +142,8 @@ class DF_Dash_Widget {
 		$options = get_option( 'dev_fuel_option_name' );
 		$key = $options['key_number'];
 		echo '<span id="df-status"></span>';
-		echo '<iframe id="dev-fuel" width="500" height="400" frameborder="0" style="border:0; opacity: 0;" src="https://www.google.com/maps/embed/v1/search?key=' . $key . '&zoom=1&q=coffee"></iframe>';
+		// Inline styles cuz I dont wanna enqueue so few styles
+		echo '<div style="position: relative; padding-bottom: 75%; padding-top: 35px; height: 0; overflow: hidden;"><iframe id="dev-fuel" width="500" height="400" frameborder="0" style="border:0; opacity: 0; position: absolute; top:0; left: 0; width: 100%; height: 100%;" src="https://www.google.com/maps/embed/v1/search?key=' . $key . '&zoom=1&q=coffee"></iframe></div>';
 	}
 
 	public function dev_fuel_ajax_request() {
