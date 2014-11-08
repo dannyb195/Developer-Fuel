@@ -137,7 +137,7 @@ class DF_Dash_Widget {
 	}
 
 	public function df_dash_output() {
-		// Uer entered data is escaped / sanatize on save
+		// User entered data is escaped / sanatize on save
 		self::df_settings();
 		$options = get_option( 'dev_fuel_option_name' );
 		$key = $options['key_number'];
@@ -146,9 +146,9 @@ class DF_Dash_Widget {
 	}
 
 	public function dev_fuel_ajax_request() {
-		// Uer entered data is escaped / sanatize on save
+		// User entered data is escaped / sanatize on save
 		$options = get_option( 'dev_fuel_option_name' );
-		// The $_REQUEST contains all the data sent via ajax
+		// The $_GET contains all the data sent via ajax
 		if ( ! empty( $options['key_number'] ) && isset( $_GET ) ) {
 
 			$lat = $_GET['lat'];
