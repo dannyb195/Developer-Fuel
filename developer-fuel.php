@@ -30,5 +30,3 @@ add_action( 'admin_enqueue_scripts', 'developer_fuel_scripts' );
 
 // Required Files
 require_once DF_PATH . 'inc/df-dash-widget.php';
-
-?>
